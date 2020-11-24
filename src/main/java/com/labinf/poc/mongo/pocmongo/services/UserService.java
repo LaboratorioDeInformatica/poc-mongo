@@ -1,6 +1,7 @@
 package com.labinf.poc.mongo.pocmongo.services;
 
 import com.labinf.poc.mongo.pocmongo.domain.User;
+import com.labinf.poc.mongo.pocmongo.dto.UserDTO;
 import com.labinf.poc.mongo.pocmongo.repository.UserRepository;
 import com.labinf.poc.mongo.pocmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,13 @@ public class UserService {
     public User findById(String id){
         Optional<User> obj = userRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public User insert(User user){
+        return userRepository.insert(user);
+    }
+
+    public User fromDTO(UserDTO userDTO){
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 }

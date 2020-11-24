@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      database: workshop_mongo
+      uri: mongodb://root:labinf@localhost:27017/?ssl=false&maxIdleTimeMS=120000

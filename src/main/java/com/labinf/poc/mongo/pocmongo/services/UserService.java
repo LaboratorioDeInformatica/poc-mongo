@@ -29,7 +29,19 @@ public class UserService {
         return userRepository.insert(user);
     }
 
+    public void delete(String id){
+        Optional<User> obj = userRepository.findById(id);
+        if(obj.isPresent()){
+            userRepository.deleteById(id);
+        }else{
+            obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+        }
+
+    }
+
     public User fromDTO(UserDTO userDTO){
         return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
+
+
 }

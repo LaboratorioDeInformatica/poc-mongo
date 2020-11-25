@@ -1,5 +1,6 @@
 package com.labinf.poc.mongo.pocmongo.resources;
 
+import com.labinf.poc.mongo.pocmongo.domain.Post;
 import com.labinf.poc.mongo.pocmongo.domain.User;
 import com.labinf.poc.mongo.pocmongo.dto.UserDTO;
 import com.labinf.poc.mongo.pocmongo.services.UserService;
@@ -53,6 +54,12 @@ public class UserResource {
         user.setId(id);
         user = userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
 }

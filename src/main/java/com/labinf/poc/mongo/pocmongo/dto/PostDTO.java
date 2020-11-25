@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +23,7 @@ public class PostDTO implements Serializable {
     private String title;
     private String body;
     private AuthorDTO author;
+    private List<CommentDTO> comments =  new ArrayList<>();
 
     public PostDTO (Post post){
         this.id = post.getId();
@@ -27,5 +31,6 @@ public class PostDTO implements Serializable {
         this.title = post.getTitle();
         this.body = post.getBody();
         this.author = post.getAuthor();
+        this.comments = post.getComments();
     }
 }
